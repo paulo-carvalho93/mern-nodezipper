@@ -31,3 +31,23 @@ export const registerUser = asyncHandler(async (req, resp) => {
     throw new Error("Oops! Something went wrong!");
   }
 });
+
+export const authUser = asyncHandler(async (req, resp) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    resp.json({
+       _id: user._id,
+      name: user.name,
+      email: user.email,
+      picture: user.picture,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    resp.status(400);
+    throw new Error("Invalid Email or Password!");
+  }
+  
+});
