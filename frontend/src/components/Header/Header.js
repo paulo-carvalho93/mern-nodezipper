@@ -1,7 +1,8 @@
 import { Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <Navbar bg="primary" expand="lg" variant="dark">
       <Container>
@@ -30,7 +31,10 @@ const Header = () => {
             <NavDropdown title="Paulo Carvalho" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item onClick={() => {
+                localStorage.removeItem("userInfo");
+                navigate("/");
+              }}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
