@@ -1,6 +1,10 @@
+import MainScreen from "../../components/MainScreen/MainScreen"
+
 const MyNotes = () => {
   return (
-    <div>MyNotes</div>
+    <MainScreen title="Welcome back Paulo">
+      My Notes
+    </MainScreen>
   )
 }
 
