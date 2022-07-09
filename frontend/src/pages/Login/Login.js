@@ -25,7 +25,7 @@ const Login = () => {
       setLoading(false);
     } catch (error) {
       console.log('Error', error);
-      setError(error.response.data.message);
+      setError(error.data.message);
       setLoading(false);
     }
   };

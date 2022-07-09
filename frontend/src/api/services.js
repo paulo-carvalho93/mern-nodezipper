@@ -12,3 +12,16 @@ export async function loginUser(data) {
     return error.response;
   }
 }
+
+export async function createUser(data) {
+  try {
+    const response = await axios.post("api/users", data, {
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+}
