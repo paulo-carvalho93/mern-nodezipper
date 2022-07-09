@@ -1,13 +1,24 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/MainScreen/MainScreen";
-import notes from "../../data/notes";
 
 const MyNotes = () => {
+  const [notes, setNotes] = useState([]);
 
   const handleDeleteNote = (id) => {
     if (window.confirm("Are you sure?")) {}
   };
+
+  const fetchNotes = async () => {
+    const { data } = await axios.get("/api/notes");
+    setNotes(data);
+  }
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
 
   return (
     <MainScreen title="Welcome back Paulo">
@@ -18,7 +29,7 @@ const MyNotes = () => {
       </Link>
         {
           notes.map((note) => (
-            <Accordion defaultActiveKey={["0"]}>
+            <Accordion key={note._id}>
               <Accordion.Item eventkey="0" className="accordion-header">
                 <Card style={{ margin: 10 }}>
                   <Card.Header style={{ display: "flex" }}>

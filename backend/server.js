@@ -1,15 +1,17 @@
 import dotenv from "dotenv";
 import express from "express";
+import connectDB from "./config/db.js";
 
 dotenv.config();
 const app = express();
+connectDB();
 
 app.get('/', (req, res) => {
   res.send("APi is running...");
 });
 
 app.get('/api/notes', (req, res) => {
-  res.json("TODO");
+  // res.json(notes);
 });
 
 app.get('/api/notes/:id', (req, res) => {
