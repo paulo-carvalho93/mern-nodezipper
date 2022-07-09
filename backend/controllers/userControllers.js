@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
+import { generateToken } from "../utils/generateToken.js";
 
 export const registerUser = asyncHandler(async (req, resp) => {
   const { name, email, password, picture } = req.body;
@@ -25,6 +26,7 @@ export const registerUser = asyncHandler(async (req, resp) => {
       email: user.email,
       picture: user.picture,
       isAdmin: user.isAdmin,
+      token: generateToken(user._id),
     });
   } else {
     resp.status(400);
@@ -44,10 +46,10 @@ export const authUser = asyncHandler(async (req, resp) => {
       email: user.email,
       picture: user.picture,
       isAdmin: user.isAdmin,
+      token: generateToken(user._id),
     });
   } else {
     resp.status(400);
     throw new Error("Invalid Email or Password!");
   }
-  
 });
