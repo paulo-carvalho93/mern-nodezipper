@@ -1,0 +1,63 @@
+.main {
+  min-height: 93vh;
+  display: flex;
+  align-items: center;
+  background-color: #EFF6FC;
+  position: relative;
+  background-image: url("../../assets/todo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.todo-img {
+  position: absolute;
+  width: 340.85px;
+  height: 409.48px;
+  left: 911.31px;
+  top: 277.52px;
+  z-index: 0;
+}
+
+.intro-text {
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-size: 60px;
+}
+
+.subtitle {
+  font-size: 25px;
+  padding-top: 10px;
+}
+
+.buttonContainer { 
+  margin-top: 520px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.landingButton { 
+  width: 200px;
+  height: 55px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .buttonContainer {
+    padding: 0 200px;
+  }
+  .title {
+    padding: 0 100px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 40px;
+  }
+  .landingButton {
+    width: 150px;
+    height: 50px;
+  }
+}
