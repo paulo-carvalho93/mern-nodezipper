@@ -10,8 +10,8 @@ const Header = () => {
             Note Zipper
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto">
             <Form inline>
               <FormControl 
@@ -21,13 +21,13 @@ const Header = () => {
               />
             </Form>
           </Nav>
-          <Nav className="me-auto">
+          <Nav>
             <Nav.Link>
               <Link to="notes">
                 My Notes
               </Link>
             </Nav.Link>
-            <NavDropdown title="Paulo Carvalho" id="basic-nav-dropdown">
+            <NavDropdown title="Paulo Carvalho" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.2">
