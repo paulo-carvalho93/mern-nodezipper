@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { register } from './../../redux/actions/userActions';
+
 import MainScreen from './../../components/MainScreen/MainScreen';
 import Loading from './../../components/Loading/Loading';
 import ErrorMessage from './../../components/ErrorMessage/ErrorMessage';
-import { createUser } from '../../api/services';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [picture, setPicture] = useState(
@@ -16,9 +19,16 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
   const [picMessage, setPicMessage] = useState(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+  const userRegister = useSelector((state) => state.userRegister)
+  const { loading, error, userInfo } = userRegister;
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("notes");
+    }
+  }, [navigate, userInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,17 +36,7 @@ const Register = () => {
     if (password !== confirmPassword) {
       setMessage("Passwords do not match!");
     } else {
-      setMessage(null);
-
-      try {
-        setLoading(true);
-        const { data } = await createUser({ name, email, password, picture });
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        setLoading(false);
-      } catch (error) {
-        setError(error.data.message);
-        setLoading(false);
-      }
+      dispatch(register(name, email, password, picture));
     }
   };
 
@@ -141,4 +141,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Register;
