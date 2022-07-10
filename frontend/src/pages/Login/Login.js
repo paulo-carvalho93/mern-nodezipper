@@ -1,21 +1,34 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from './../../redux/actions/userActions';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import MainScreen from '../../components/MainScreen/MainScreen'
 import Loading from './../../components/Loading/Loading';
 import ErrorMessage from './../../components/ErrorMessage/ErrorMessage';
 
 import './Login.css';
-import { useDispatch } from 'react-redux';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/notes");
+    }
+  }, [navigate, userInfo]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    dispatch(login(email, password));
   };
   
   return (
@@ -58,4 +71,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
