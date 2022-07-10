@@ -5,29 +5,17 @@ import MainScreen from '../../components/MainScreen/MainScreen'
 import Loading from './../../components/Loading/Loading';
 import ErrorMessage from './../../components/ErrorMessage/ErrorMessage';
 
-import { loginUser } from '../../api/services';
-
 import './Login.css';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
-      setLoading(true);
-      const { data } = await loginUser({ email, password });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      setLoading(false);
-    } catch (error) {
-      console.log('Error', error);
-      setError(error.data.message);
-      setLoading(false);
-    }
   };
   
   return (

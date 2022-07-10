@@ -9,7 +9,7 @@ export async function loginUser(data) {
     });
     return response;
   } catch (error) {
-    return error.response;
+    return error;
   }
 }
 
@@ -22,6 +22,6 @@ export async function createUser(data) {
     });
     return response;
   } catch (error) {
-    return error.response;
+    return error;
   }
 }
