@@ -21,7 +21,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/notes");
+      navigate("/mynotes");
     }
   }, [navigate, userInfo]);
 
@@ -29,6 +29,7 @@ const Login = () => {
     e.preventDefault();
 
     dispatch(login(email, password));
+    navigate("/mynotes");
   };
   
   return (

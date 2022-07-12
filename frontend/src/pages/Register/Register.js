@@ -26,7 +26,7 @@ const Register = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("notes");
+      navigate("/mynotes");
     }
   }, [navigate, userInfo]);
 
@@ -37,6 +37,7 @@ const Register = () => {
       setMessage("Passwords do not match!");
     } else {
       dispatch(register(name, email, password, picture));
+      navigate("/mynotes");
     }
   };
 

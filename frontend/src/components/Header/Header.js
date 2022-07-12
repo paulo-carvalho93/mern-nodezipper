@@ -2,6 +2,7 @@ import { Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bo
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/actions/userActions';
+import { useEffect } from 'react';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const Header = () => {
     dispatch(logout());
     navigate("/");
   };
+
+  useEffect(() => {}, [userInfo]);
 
   return (
     <Navbar bg="primary" expand="lg" variant="dark">
@@ -37,7 +40,7 @@ const Header = () => {
           </Nav>
           <Nav>
             <Nav.Link>
-              <Link to="notes">
+              <Link to="/mynotes">
                 My Notes
               </Link>
             </Nav.Link>
